@@ -1,11 +1,20 @@
+import { useState } from 'react'
 import './App.css'
 
 const Card = ({ title, year, rating }) => {
+  const [liked, setLiked] = useState(false)
+
   return (
     <div className="card">
       <h2 className="card-title">{title}</h2>
       <p className="card-year">Year: {year}</p>
       <p className="card-rating">⭐ {rating}</p>
+
+      <button
+        className="like-btn"
+        onClick={() => setLiked(!liked)}>
+          {liked ? '❤️ Liked' : '🤍 Like'}
+      </button>
     </div>
   )
 }
