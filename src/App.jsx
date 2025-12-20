@@ -1,20 +1,45 @@
-import { useState } from 'react'
-import './App.css'
+import { useEffect, useState } from 'react'
 
 const Card = ({ title, year, rating }) => {
   const [liked, setLiked] = useState(false)
+  const [likesCount, setLikesCount] = useState(0)
+
+  useEffect(() => {
+    const savedLike = localStorage.getItem(`${title}-liked`)
+    const savedCount = localStorage.getItem(`${title}-count`)
+
+    if (savedLike === 'true') setLiked(true)
+    if (savedCount) setLikesCount(Number(savedCount))
+  }, [title])
+
+  useEffect(() => {
+    localStorage.setItem(`${title}-liked`, liked)
+    localStorage.setItem(`${title}-count`, likesCount)
+  }, [liked, likesCount, title])
+
+  const handleLike = () => {
+    if (liked) {
+      setLiked(false)
+      setLikesCount(likesCount - 1)
+    } else {
+      setLiked(true)
+      setLikesCount(likesCount + 1)
+    }
+  }
 
   return (
     <div className="card">
-      <h2 className="card-title">{title}</h2>
-      <p className="card-year">Year: {year}</p>
-      <p className="card-rating">⭐ {rating}</p>
+      <h2>{title}</h2>
+      <p>Year: {year}</p>
+      <p>⭐ {rating}</p>
 
-      <button
-        className="like-btn"
-        onClick={() => setLiked(!liked)}>
-          {liked ? '❤️ Liked' : '🤍 Like'}
+      <button className="like-btn" onClick={handleLike}>
+        {liked ? '❤️ Liked' : '🤍 Like'}
       </button>
+
+      <p className="like-count">
+        {likesCount} Likes
+      </p>
     </div>
   )
 }
