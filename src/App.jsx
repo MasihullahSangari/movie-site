@@ -50,9 +50,13 @@ const App = () => {
       <h1 className="app-title">Netflix Movies</h1>
 
       <div className="card-container">
+        <Card title="Stranger Things" year={2015} rating={9.9} />
         <Card title="Inception" year={2010} rating={8.8} />
         <Card title="Interstellar" year={2014} rating={8.6} />
         <Card title="The Dark Knight" year={2008} rating={9.0} />
+        <Card title="MR. Robot" year={2016} rating={8.5} />
+        <Card title="The End Game" year={2024} rating={7.8} />
+        <Card title="Swiped" year={2025} rating={5.4} />
       </div>
     </div>
   )

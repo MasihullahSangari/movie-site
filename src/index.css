@@ -102,3 +102,8 @@ body {
 .like-btn:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
+
+.app-title {
+  text-align: center;
+  color: rgb(197, 32, 32);
+}
